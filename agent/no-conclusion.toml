@@ -1,0 +1,65 @@
+# Phrases that state a legal reading as settled, read by no_conclusion.py. Copied from the legal track of 11 Nov. 2026
+# (its issue verifier's [conclusions] list). Every list is PROVISIONAL: a reader's finding may add a line.
+# A sentence ending on a question mark is exempt, and so is text inside « », " ", “ ” or backticks (a quotation).
+fr = [
+  "est conforme", "sont conformes", "sommes conformes", "est en conformité", "sommes en conformité",
+  "nous sommes en règle", "est en règle", "sont en règle",
+  "est légal", "est légale", "est licite", "est illégal", "est illégale", "est illicite", "est interdit par",
+  "ne pose aucun problème", "ne pose pas de problème", "aucun risque juridique", "sans risque juridique",
+  "n'est pas obligatoire", "n’est pas obligatoire", "n'est pas requis", "n’est pas requis",
+  "n'est pas nécessaire", "n’est pas nécessaire", "n'est pas soumis", "n’est pas soumis",
+  "ne s'applique pas", "ne s’applique pas", "n'a pas à", "n’a pas à",
+  "est exempté", "est exemptée", "est dispensé", "est dispensée",
+  "suffit à", "suffit pour", "est donc", "sont donc", "il est certain", "il est clair que",
+  "respecte le règlement", "respecte la loi", "respecte l'article", "respecte l’article",
+  "viole", "enfreint", "est une infraction", "constitue une infraction",
+  # Added on 12 Nov. 2026, after a reader found outcome sentences of a real register that the list missed.
+  "pas d'obligation", "pas d’obligation", "aucune obligation", "n'est requis", "n’est requis", "n'est exigé",
+  "n’est exigé", "n'est exigée", "n’est exigée", "n'est pas exigé", "n’est pas exigé", "n'est pas soumise",
+  "n’est pas soumise", "ne sont pas soumis", "est soumis à", "est soumise à", "sont soumis à", "s'applique à",
+  "s’applique à", "ne s'appliquent pas", "ne s’appliquent pas", "n'est pas concerné", "n’est pas concerné",
+  "n'est pas concernée", "n’est pas concernée", "n'entre pas dans", "n’entre pas dans", "entre dans le champ",
+  "est exonéré", "est exonérée",
+  "est interdit", "est interdite", "sont interdits", "est autorisé", "est autorisée", "est permis", "est permise",
+  "n'est pas tenu", "n’est pas tenu", "n'est pas tenue", "n’est pas tenue", "ne sont pas tenus", "s'applique", "s’applique",
+  "n'est pas obligé", "n’est pas obligé", "n'est pas obligée", "n’est pas obligée", "aucun droit de", "interdit d'utiliser",
+  "interdit l'usage", "est le fabricant", "est fabricant au sens",
+  # Added on 12 Nov. 2026, pass 4: negated and positive forms a reader passed.
+  "n'est pas conforme", "ne sont pas conformes", "n'est pas licite", "ne respecte pas", "est tenu de", "est tenue de",
+  "sont tenus de", "est soumis au", "est soumise au", "est soumise à la", "constitue un", "constitue une",
+  "relève de l'article", "est obligatoire", "sont obligatoires", "est requis", "est requise", "pas de droit de",
+]
+en = [
+  "is compliant", "are compliant", "is in compliance", "are in compliance", "complies with", "comply with",
+  "is legal", "is lawful", "is illegal", "is unlawful", "is prohibited by",
+  "we are covered", "is not required", "are not required", "is not needed", "no obligation",
+  "does not apply", "do not apply", "is exempt", "are exempt", "is outside the scope", "falls outside",
+  "is sufficient", "is enough to", "is therefore", "are therefore", "it is clear that", "it is certain",
+  "violates", "infringes", "is an offence", "is a breach",
+  "no consent is needed", "is not subject to", "is not covered by", "is out of scope",
+  "is allowed", "are allowed", "is forbidden", "are forbidden", "is permitted", "are permitted", "complies", "is needed here",
+  "is not mandatory", "not needed here", "is not obliged",
+  "is not compliant", "is exempted", "is mandatory", "is required", "must comply", "is not permitted",
+]
+
+# Patterns, as regular expressions on the lowercased sentence, for forms a fixed phrase cannot hold. Added on
+# 12 Nov. 2026 after a reviewer's attacks passed the phrases above.
+patterns = [
+  '''\bn['’]interdi(t|sent)\b''',
+  '''\b(est|sont) (autoris|permis|interdit)\w* (par|au sens)''',
+  '''\b(aucun|aucune|pas de|pas d['’])\s*[\w'’]+( [\w'’]+)? n['’](est|sont) (nécessaire|requis|exigé|obligatoire)''',
+  '''\blawful(ly)?\b''',
+  '''\bunlawful(ly)?\b''',
+  '''\bno \w+( \w+)? (is|are) (necessary|needed|required|mandatory)\b''',
+  '''\b(is|are) (permitted|allowed|authori[sz]ed|prohibited|forbidden) (by|under)\b''',
+  '''\bn['’]oblige\b''',
+  '''\brelève de (la|l['’]|du|des)\b''',
+  '''\b(applies|apply) to (the|this|our|its)\b''',
+  '''\bno \w+( \w+)? needs? to\b''',
+  '''\bdoit (désigner|déclarer|nommer|informer|obtenir)\b''',
+  '''\bincurr(ed|s)?\b''',
+  '''\bencourue?s?\b''',
+  '''\b(is|est) (a|an|un|une) (host|hébergeur|manufacturer|fabricant|controller|processor|sous-traitant|responsable de traitement)\b''',
+  '''\bsuffit\b''',
+  '''\b(est|n['’]est pas) une? prospection\b''',
+]

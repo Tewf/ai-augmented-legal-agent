@@ -1,0 +1,16 @@
+// The legal agent's loop: a plan becomes constraints; an open point gets a temporary measure and a question for the jurist.
+digraph legal_agent {
+  graph [rankdir=LR, nodesep=0.35, ranksep=0.45, bgcolor="white", pad=0.2, fontname="Inter"];
+  node  [shape=box, style="rounded,filled", fontname="Inter", fontsize=12, margin="0.15,0.08", penwidth=1.4, fontcolor="#1F2328", fillcolor="#FFFFFF", color="#3D434B"];
+  edge  [fontname="Inter", fontsize=10, color="#3D434B", fontcolor="#55575F", penwidth=1.2, arrowsize=0.8];
+  PLAN [label=<<b>plan or act</b>>];
+  AGENT [label=<<b>legal agent</b><br/><font point-size="10" color="#55575F">drafts, never decides</font>>, fillcolor="#E8EEF8", color="#2F5DA8"];
+  REG [label=<<b>register</b><br/><font point-size="10" color="#55575F">one line per constraint</font>>];
+  J [label=<<b>objective J</b><br/><font point-size="10" color="#55575F">maximised under them</font>>, fillcolor="#E6F2EA", color="#2E7D4F"];
+  TMP [label=<<b>temporary measure</b><br/><font point-size="10" color="#55575F">risk, date, issue</font>>, style="rounded,filled,dashed"];
+  JUR [label=<<b>jurist</b><br/><font point-size="10" color="#55575F">a person, settles</font>>, fillcolor="#FBEDE4", color="#B4541A"];
+  PLAN -> AGENT -> REG -> J;
+  REG -> TMP [label=" open point, a person approves"];
+  AGENT -> JUR [label=" one question per point, sent by a person"];
+  JUR -> REG [label=" answer recorded"];
+}
