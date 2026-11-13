@@ -1,0 +1,5 @@
+---
+title: "AI-augmented legal agent: the jurist's secretary"
+---
+
+{{< include README.md >}}
