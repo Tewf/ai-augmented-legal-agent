@@ -18,5 +18,5 @@ answer = "It stays: jobs is a collection of one-time jobs done with a person (`t
 check = "figures-present"
 path = "agent/SKILL.md"
 question = "a long text with no figure, table or diagram: is a relation, set, quantity or process described only in words?"
-file = "23c5ee3ff352"
+file = "995e6482e19c"
 answer = "No figure: the skill is a list of rules a model applies one by one (`## Rules`); the agent's loop is drawn on the front page."

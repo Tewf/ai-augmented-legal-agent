@@ -5,6 +5,10 @@ A pin move is recorded here, not in decisions/.
 
 ## Unreleased
 
+### Changed
+
+- `agent/sources_check.py` also lists an article number (« art. 13 et 28 », « article L. 34-5 ») that no given text writes after « art. » or « article », or, for a number with a hyphen or a dot, anywhere as a token. A fresh reader found « art. 13 et 28 » of the RGPD cited from memory in pass 10 on 16 Nov. 2026, and the program let it through. Rerun on the pass-10 output and on the run before it, it lists articles 13 and 28 and nothing else; 5.1, 7.1, 34-5 and 82 are found in the given texts. Seven tests added.
+
 ### Added
 
 - `agent/sources_check.py` and its tests, a gate of every run: the reference numbers, Légifrance or EUR-Lex ids and

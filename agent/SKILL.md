@@ -53,8 +53,8 @@ Each has its prompt in `prompts/`; follow the one the task asks for.
      except a condition the register requires ("if ..., then the text says ..."), which goes to the reader;
   2. a fresh reader, holding [rubric.md](rubric.md) and nothing else, judges the sample the rubric names.
   The report says, per sentence, which guard judged it. The program alone never clears a run.
-- **Cite only what you were given.** Every reference number, Légifrance or EUR-Lex id and quotation of eight words or
-  more must be in a text you were given: `python3 <this folder>/sources_check.py <your output> --texts <the texts>`.
+- **Cite only what you were given.** Every reference number, Légifrance or EUR-Lex id, article number and quotation of
+  eight words or more must be in a text you were given: `python3 <this folder>/sources_check.py <your output> --texts <the texts>`.
   It is a gate: a run where it lists anything is refused until each item is fixed or the text holding it is given.
   Never write a number or a quotation from memory.
 - **Check the register after every change:** `python3 <this folder>/register_check.py <new>`. It compares with the
