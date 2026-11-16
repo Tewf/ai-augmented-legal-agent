@@ -155,3 +155,33 @@ class Counts(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TableShape(unittest.TestCase):
+    """The two faults of the legal agent's gallery runs (16 Nov. 2026, passes 1, 3 and 4 of work/2026-11-16_law-2): a header
+    that names a column twice, and a separator row whose cells differ in number from the header's. A reader found each
+    by hand; the rows alone, which the older check compared, were all the right length."""
+
+    def broken(self, header_extra=0, separator_extra=0):
+        names = [rc.COLUMNS[c] for c in COLS] + ["source"] * header_extra
+        lines = ["| " + " | ".join(names) + " |", "|" + "---|" * (len(names) + separator_extra)]
+        row = line(state="ouvert")
+        lines.append("| " + " | ".join(row.get(c, "") for c in COLS) + " |" * 1)
+        path = Path(tempfile.mkdtemp()) / "r.md"
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        return rc.read(path)
+
+    def test_a_clean_table_reads_without_problem(self):
+        self.assertEqual(self.broken()[1], [])
+
+    def test_a_column_named_twice_is_refused(self):
+        _, problems = self.broken(header_extra=1)
+        self.assertTrue(any("named twice" in p and "source" in p for p in problems), problems)
+
+    def test_a_separator_with_one_cell_too_many_is_refused(self):
+        _, problems = self.broken(separator_extra=1)
+        self.assertTrue(any("separator row has" in p for p in problems), problems)
+
+    def test_a_separator_with_one_cell_too_few_is_refused(self):
+        _, problems = self.broken(separator_extra=-1)
+        self.assertTrue(any("separator row has" in p for p in problems), problems)

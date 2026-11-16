@@ -59,6 +59,14 @@ Each has its prompt in `prompts/`; follow the one the task asks for.
   Never write a number or a quotation from memory.
 - **Check the register after every change:** `python3 <this folder>/register_check.py <new>`. It compares with the
   version a person committed; you never give `--before` and never commit the register yourself.
+- **Check what you say of your own files, and your measures' conditions.** Run both programs, and fix each line they list:
+  - `python3 <this folder>/own_claims_check.py <result.md> --register <register> --files <your other files> --texts <the texts and the act's folder> --act <the act>`:
+    a count, a « cité dans », a « ne reste que dans », a hash or a « gardes non exécutés » that the files contradict;
+  - `python3 <this folder>/measure_check.py <register>`:
+    - a condition that tests whether a fact is established instead of its value;
+    - a condition on a fact the line does not ask about;
+    - a measure that starts by establishing a fact over an empty « à établir d'abord » cell;
+    - one change proposed under a condition on one line and with none on the next.
 - **Grade what you say** in the register's grade column: read at the source, read in a secondary source (which one),
   or not read.
 - **Let the company work.** For an open point you propose a temporary measure, not a stop, and a person approves it

@@ -6,8 +6,9 @@ line traced to a unique source, the counts reconciled with the inputs, and no st
 
 The register is the Markdown table of register.md, with English or French column names; accents are read in NFC,
 curly apostrophes as straight ones, and an escaped pipe `\\|` stays inside its cell. Errors:
-- no register table, no row, a row whose cells differ in number from the header, a column of register.md missing,
-  column names of both languages in one header; every table whose header holds point and state is read;
+- no register table, no row, a row or the separator row whose cells differ in number from the header, a column named
+  twice in the header, a column of register.md missing, column names of both languages in one header; every table
+  whose header holds point and state is read;
 - a state outside the five, or states of both languages in one register;
 - a line with no source, or two lines with one source;
 - two lines with the same issue, article, point and question;
@@ -85,11 +86,16 @@ def read(path: Path) -> tuple[list[dict[str, str]], list[str]]:
                 if english and french_names:
                     problems.append(f"line {number} of the file: column names of both languages in one header")
                 language = "fr" if french_names else "en"
+                twice = sorted({n for n in names if names.count(n) > 1})
+                if twice:
+                    problems.append(f"line {number} of the file: a column named twice in the header: " + ", ".join(twice))
                 missing = [c for c in COLUMNS if c not in names]
                 if missing:
                     problems.append(f"line {number} of the file: a table missing the columns " + ", ".join(missing))
             continue
         if set("".join(cells)) <= set("-: "):
+            if len(cells) != len(header):
+                problems.append(f"line {number} of the file: the separator row has {len(cells)} cells where the header has {len(header)}")
             continue
         if len(cells) != len(header):
             problems.append(f"line {number} of the file: {len(cells)} cells where the header has {len(header)}")

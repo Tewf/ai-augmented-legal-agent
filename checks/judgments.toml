@@ -20,3 +20,17 @@ path = "agent/SKILL.md"
 question = "a long text with no figure, table or diagram: is a relation, set, quantity or process described only in words?"
 file = "995e6482e19c"
 answer = "No figure: the skill is a list of rules a model applies one by one (`## Rules`); the agent's loop is drawn on the front page."
+
+[[answer]]
+check = "logical-lines"
+path = "agent/SKILL.md"
+question = "81 logical lines, past the trigger of 80. State this file's role in one sentence. If the sentence needs 'and', split the file; if not, it may stay."
+file = "549a888f5988"
+answer = "One role, no 'and': the rules the legal agent applies, one after another (`## Rules`); the guards it runs are listed in that one section."
+
+[[answer]]
+check = "figures-present"
+path = "agent/SKILL.md"
+question = "a long text with no figure, table or diagram: is a relation, set, quantity or process described only in words?"
+file = "549a888f5988"
+answer = "No figure: the skill is a list of rules a model applies one by one (`## Rules`); the agent's loop is drawn on the front page."
