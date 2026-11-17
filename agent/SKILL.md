@@ -67,6 +67,9 @@ Each has its prompt in `prompts/`; follow the one the task asks for.
     - a condition on a fact the line does not ask about;
     - a measure that starts by establishing a fact over an empty « à établir d'abord » cell;
     - one change proposed under a condition on one line and with none on the next.
+- **Check that each fix you report is in your files.** When your report lists fixes (a section « Passe N » of `result.md`), run
+  `python3 <this folder>/claimed_fixes.py <your output folder>`: a fix you say is made, with the words it is made in between « »,
+  that is not in the file you name, is listed; write a fix in the report only when this program finds it.
 - **Grade what you say** in the register's grade column: read at the source, read in a secondary source (which one),
   or not read.
 - **Let the company work.** For an open point you propose a temporary measure, not a stop, and a person approves it
