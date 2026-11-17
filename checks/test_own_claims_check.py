@@ -116,5 +116,25 @@ class HashesAndGuards(unittest.TestCase):
         self.assertIn("guards were not run", out)
 
 
+class SealedFolder(unittest.TestCase):
+    def test_running_the_checks_writes_nothing_beside_them(self):
+        """A run's agent folder is sealed by the runner and compared after the run: a __pycache__ written by an import
+        beside the programs made the seal report a change on 17 Nov. 2026 (work/2026-11-17_law-site-notice)."""
+        import shutil, subprocess, sys
+        folder = Path(tempfile.mkdtemp()) / "agent"
+        shutil.copytree(AGENT, folder, ignore=shutil.ignore_patterns("__pycache__"))
+        register = Path(tempfile.mkdtemp()) / "r.md"
+        register.write_text(register_text(), encoding="utf-8")
+        for program in ("own_claims_check.py", "measure_check.py"):
+            args = [str(folder / program), str(register)] if program == "measure_check.py" else \
+                   [str(folder / program), str(register), "--register", str(register)]
+            subprocess.run([sys.executable, *args], capture_output=True, text=True)
+        self.assertFalse((folder / "__pycache__").exists())
+
+
+def register_text():
+    return register()
+
+
 if __name__ == "__main__":
     unittest.main()
