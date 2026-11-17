@@ -5,6 +5,10 @@ A pin move is recorded here, not in decisions/.
 
 ## Unreleased
 
+### Changed
+
+- The licence of new code: AGPL-3.0-or-later from decision 0002; what is published stays Apache-2.0.
+
 ### Added
 
 - `agent/sources_check.py` and its tests, a gate of every run: the reference numbers, Légifrance or EUR-Lex ids and
